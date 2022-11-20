@@ -1,13 +1,37 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AccountsModule } from './accounts/accounts.module';
 import { ClientsModule } from './clients/clients.module';
-import { PaymentModule } from './payment/payment.module';
-import { SubscriptionModule } from './subscription/subscription.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [AccountsModule, ClientsModule, PaymentModule, SubscriptionModule],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'root',
+      database: 'wesell',
+      migrationsRun: true,
+      logging: true,
+      timezone: '+00:00',
+      bigNumberStrings: false,
+      entities: [
+        process.env.ENVIRONMENT == 'prod'
+          ? '**/infrastructure/entities/*{.ts,.js}'
+          : 'dist/**/infrastructure/entities/*{.ts,.js}',
+      ],
+      subscribers: [],
+      migrations: [
+        process.env.ENVIRONMENT == 'prod'
+          ? 'common/infrastructure/migrations/*{.ts,.js}'
+          : 'dist/common/infrastructure/migrations/*{.ts,.js}',
+      ],
+      migrationsTableName: 'migrations',
+    }),
+    ClientsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
