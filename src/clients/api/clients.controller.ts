@@ -1,42 +1,48 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
-import { ClientsService } from '../application/services/clients.service';
-import { CreateClientDto } from '../application/dtos/create-client.dto';
-import { UpdateClientDto } from '../application/dtos/update-client.dto';
+import { Controller, Post, Body, Res, Get } from '@nestjs/common';
+import { RegisterPersonRequest } from '../application/dtos/request/register-person-request.dto';
+import { RegisterPersonResponse } from '../application/dtos/response/register-person-response.dto';
+import { Result } from 'typescript-result';
+import { AppNotification } from '../../common/application/app.notification';
+import { ApiController } from '../../common/api/api.controller';
+import { QueryBus } from '@nestjs/cqrs';
+import { GetCustomersPersonQuery } from '../application/queries/get-customers-person.query';
+import { PersonApplicationService } from '../application/services/person-application.service';
 
 @Controller('clients')
 export class ClientsController {
-  constructor(private readonly clientsService: ClientsService) {}
+  constructor(
+    private readonly personApplicationService: PersonApplicationService,
+    private readonly queryBus: QueryBus,
+  ) {}
 
-  @Post()
-  create(@Body() createClientDto: CreateClientDto) {
-    return this.clientsService.create(createClientDto);
+  @Post('/person')
+  async registerPerson(
+    @Body() registerPersonRequest: RegisterPersonRequest,
+    @Res({ passthrough: true }) response,
+  ): Promise<object> {
+    try {
+      const result: Result<AppNotification, RegisterPersonResponse> =
+        await this.personApplicationService.register(registerPersonRequest);
+      if (result.isSuccess()) {
+        return ApiController.created(response, result.value);
+      }
+      return ApiController.error(response, result.error.getErrors());
+    } catch (error) {
+      return ApiController.serverError(response, error);
+    }
   }
 
-  @Get()
-  findAll() {
-    return this.clientsService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.clientsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
-    return this.clientsService.update(+id, updateClientDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.clientsService.remove(+id);
+  @Get('/person')
+  async getCustomersPerson(
+    @Res({ passthrough: true }) response,
+  ): Promise<object> {
+    try {
+      const customers = await this.queryBus.execute(
+        new GetCustomersPersonQuery(),
+      );
+      return ApiController.ok(response, customers);
+    } catch (error) {
+      return ApiController.serverError(response, error);
+    }
   }
 }
