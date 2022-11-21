@@ -25,7 +25,7 @@ export class PersonApplicationService {
       return Result.error(notification);
     }
     const createdAt = DateTime.utcNow().format();
-    const createdBy = AppSettings.SUPER_ADMIN;
+    const createdBy = null;
     const updatedAt = null;
     const updatedBy = null;
     const registerPerson: RegisterPerson = new RegisterPerson(
