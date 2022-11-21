@@ -8,8 +8,10 @@ import { ApiController } from '../../common/api/api.controller';
 import { QueryBus } from '@nestjs/cqrs';
 import { GetSubscriptionsByIdQuery } from '../application/queries/get-subscriptions-by-id.query';
 import { GetSubscriptionsQuery } from '../application/queries/get-subscriptions.query';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('Subscription')
+@ApiTags('subscription')
 export class SubscriptionController {
   constructor(
     private readonly accountsApplicationService: SubscriptionApplicationService,

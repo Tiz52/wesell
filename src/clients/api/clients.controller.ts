@@ -7,8 +7,10 @@ import { ApiController } from '../../common/api/api.controller';
 import { QueryBus } from '@nestjs/cqrs';
 import { GetCustomersPersonQuery } from '../application/queries/get-customers-person.query';
 import { PersonApplicationService } from '../application/services/person-application.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('clients')
+@ApiTags('person clients')
 export class ClientsController {
   constructor(
     private readonly personApplicationService: PersonApplicationService,
