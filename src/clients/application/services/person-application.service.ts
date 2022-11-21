@@ -7,7 +7,6 @@ import { AppNotification } from 'src/common/application/app.notification';
 import { Result } from 'typescript-result';
 import { RegisterPerson } from '../commands/register-person.command';
 import { DateTime } from '../../../common/domain/value-objects/date-time.value';
-import { AppSettings } from '../../../common/application/app-settings';
 
 @Injectable()
 export class PersonApplicationService {
