@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientsModule } from './clients/clients.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { SubscriptionModule } from './subscription/suscription.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       migrationsTableName: 'migrations',
     }),
     ClientsModule,
+    SubscriptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
