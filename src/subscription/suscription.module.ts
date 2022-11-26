@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { SuscriptionTypeORM } from './infrastructure/entities/suscribe.typeorm';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SubscriptionController } from './api/subscriptions.controller';
+import { SubscriptionController } from './interface/rest/subscriptions.controller';
 import { SuscriptionOpenedHandler } from './application/handlers/events/suscriptions-opened.handler';
 import { SubscriptionApplicationService } from './application/services/subscriptions-application.service';
 import { OpenSuscriptionValidator } from './application/validators/open-reservation.validator';

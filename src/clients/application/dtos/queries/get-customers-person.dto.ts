@@ -3,4 +3,5 @@ export class GetCustomersPersonDto {
   public firstName: string;
   public lastName: string;
   public dni: string;
+  public email: string;
 }

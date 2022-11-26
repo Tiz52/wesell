@@ -35,6 +35,12 @@ export class RegisterPersonValidator {
     if (dni.length <= 0) {
       notification.addError('dni is required', null);
     }
+    const email: string = registerPersonRequest.email
+      ? registerPersonRequest.email.trim()
+      : '';
+    if (email.length <= 0) {
+      notification.addError('email is required', null);
+    }
     if (notification.hasErrors()) {
       return notification;
     }

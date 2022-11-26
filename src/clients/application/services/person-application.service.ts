@@ -25,12 +25,13 @@ export class PersonApplicationService {
     }
     const createdAt = DateTime.utcNow().format();
     const createdBy = null;
-    const updatedAt = null;
+    const updatedAt = DateTime.utcNow().format();
     const updatedBy = null;
     const registerPerson: RegisterPerson = new RegisterPerson(
       registerPersonRequest.firstName,
       registerPersonRequest.lastName,
       registerPersonRequest.dni,
+      registerPersonRequest.email,
       createdAt,
       createdBy,
       updatedAt,
@@ -42,6 +43,7 @@ export class PersonApplicationService {
       registerPersonRequest.firstName,
       registerPersonRequest.lastName,
       registerPersonRequest.dni,
+      registerPersonRequest.email,
     );
     return Result.ok(registerResponse);
   }

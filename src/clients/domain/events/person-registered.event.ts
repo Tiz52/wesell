@@ -6,6 +6,7 @@ export class PersonRegistered extends CustomerRegistered {
     public readonly firstName: string,
     public readonly lastName: string,
     public readonly dni: string,
+    public readonly email: string,
   ) {
     super(id);
   }

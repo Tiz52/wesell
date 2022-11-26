@@ -12,6 +12,7 @@ export class PersonMapper {
       person.getName().getLastName(),
     );
     personTypeORM.dni = DniTypeORM.from(person.getDni().getValue());
+    personTypeORM.email = DniTypeORM.from(person.getEmail().getValue());
     const createdAt: string =
       person.getAuditTrail() != null &&
       person.getAuditTrail().getCreatedAt() != null

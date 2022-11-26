@@ -1,13 +1,13 @@
 import { Controller, Post, Body, Res, Get, Param } from '@nestjs/common';
-import { OpenSuscribeRequest } from '../application/dtos/request/open-suscriptions-request.dto';
-import { OpenSuscribeResponse } from '../application/dtos/response/open-suscriptions-response.dto';
-import { SubscriptionApplicationService } from '../application/services/subscriptions-application.service';
+import { OpenSuscribeRequest } from '../../application/dtos/request/open-suscriptions-request.dto';
+import { OpenSuscribeResponse } from '../../application/dtos/response/open-suscriptions-response.dto';
+import { SubscriptionApplicationService } from '../../application/services/subscriptions-application.service';
 import { Result } from 'typescript-result';
-import { AppNotification } from '../../common/application/app.notification';
-import { ApiController } from '../../common/api/api.controller';
+import { AppNotification } from '../../../common/application/app.notification';
+import { ApiController } from '../../../common/interface/rest/api.controller';
 import { QueryBus } from '@nestjs/cqrs';
-import { GetSubscriptionsByIdQuery } from '../application/queries/get-subscriptions-by-id.query';
-import { GetSubscriptionsQuery } from '../application/queries/get-subscriptions.query';
+import { GetSubscriptionsByIdQuery } from '../../application/queries/get-subscriptions-by-id.query';
+import { GetSubscriptionsQuery } from '../../application/queries/get-subscriptions.query';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('Subscription')
