@@ -3,7 +3,6 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   TableInheritance,
-  Unique,
 } from 'typeorm';
 import { AuditTrailTypeORM } from '../../../common/infrastructure/value-objects/audit-trail.typeorm';
 import { ClientType } from '../../domain/enums/client-type.enum';
@@ -18,7 +17,7 @@ export class ClientTypeORM {
   })
   public id: number;
 
-  @Column((type) => AuditTrailTypeORM, { prefix: false })
+  @Column(() => AuditTrailTypeORM, { prefix: false })
   public auditTrail: AuditTrailTypeORM;
 
   @Column({

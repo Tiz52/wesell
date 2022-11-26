@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { SuscriptionNumberTypeORM } from '../value-objects/suscribe-number.typeorm';
 import { SuscriberIdTypeORM } from '../value-objects/suscriber-id.typeorm';
 import { AuditTrailTypeORM } from '../../../common/infrastructure/value-objects/audit-trail.typeorm';

@@ -9,7 +9,7 @@ export class GetCustomersPersonHandler
 {
   constructor(private dataSource: DataSource) {}
 
-  async execute(query: GetCustomersPersonQuery) {
+  async execute() {
     const manager = this.dataSource.createEntityManager();
     const sql = `
     SELECT 
