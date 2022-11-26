@@ -22,8 +22,7 @@ export class DateTime {
     return new DateTime(datetime);
   }
 
-  public format(format = 'MM/DD/YYYY') {
-    //return moment(this.datetime).format(format);
+  public format() {
     return moment(this.datetime).format();
   }
 }
