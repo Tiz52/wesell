@@ -53,4 +53,8 @@ export class PersonName {
     }
     return Result.ok(new PersonName(firstName, lastName));
   }
+
+  public getPersonName(): PersonName {
+    return new PersonName(this.firstName, this.lastName);
+  }
 }

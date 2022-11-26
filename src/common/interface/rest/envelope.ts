@@ -1,4 +1,4 @@
-import { AppError } from '../application/app.error';
+import { AppError } from '../../application/app.error';
 
 export class Envelope {
   constructor(

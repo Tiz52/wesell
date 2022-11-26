@@ -1,12 +1,12 @@
 import { Controller, Post, Body, Res, Get } from '@nestjs/common';
-import { RegisterPersonRequest } from '../application/dtos/request/register-person-request.dto';
-import { RegisterPersonResponse } from '../application/dtos/response/register-person-response.dto';
+import { RegisterPersonRequest } from '../../application/dtos/request/register-person-request.dto';
+import { RegisterPersonResponse } from '../../application/dtos/response/register-person-response.dto';
 import { Result } from 'typescript-result';
-import { AppNotification } from '../../common/application/app.notification';
-import { ApiController } from '../../common/api/api.controller';
+import { AppNotification } from '../../../common/application/app.notification';
+import { ApiController } from '../../../common/interface/rest/api.controller';
 import { QueryBus } from '@nestjs/cqrs';
-import { GetCustomersPersonQuery } from '../application/queries/get-customers-person.query';
-import { PersonApplicationService } from '../application/services/person-application.service';
+import { GetCustomersPersonQuery } from '../../application/queries/get-customers-person.query';
+import { PersonApplicationService } from '../../application/services/person-application.service';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('clients')

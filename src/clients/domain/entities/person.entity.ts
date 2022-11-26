@@ -5,15 +5,23 @@ import { AuditTrail } from '../../../common/domain/value-objects/audit-trail.val
 import { Client } from './client.entity';
 import { ClientType } from '../enums/client-type.enum';
 import { PersonRegistered } from '../events/person-registered.event';
+import { Email } from '../value-objects/email.value';
 
 export class Person extends Client {
   private name: PersonName;
   private dni: Dni;
+  private email: Email;
 
-  public constructor(name: PersonName, dni: Dni, auditTrail: AuditTrail) {
+  public constructor(
+    name: PersonName,
+    dni: Dni,
+    email: Email,
+    auditTrail: AuditTrail,
+  ) {
     super(ClientType.PERSON, auditTrail);
     this.name = name;
     this.dni = dni;
+    this.email = email;
   }
 
   public register() {
@@ -22,6 +30,7 @@ export class Person extends Client {
       this.name.getFirstName(),
       this.name.getLastName(),
       this.dni.getValue(),
+      this.email.getValue(),
     );
     this.apply(event);
   }
@@ -38,6 +47,10 @@ export class Person extends Client {
     return this.dni;
   }
 
+  public getEmail(): Email {
+    return this.email;
+  }
+
   public getAuditTrail(): AuditTrail {
     return this.auditTrail;
   }
@@ -48,5 +61,9 @@ export class Person extends Client {
 
   public changeDni(dni: Dni): void {
     this.dni = dni;
+  }
+
+  public changeEmail(email: Email): void {
+    this.email = email;
   }
 }

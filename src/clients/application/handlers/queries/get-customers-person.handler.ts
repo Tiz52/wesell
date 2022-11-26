@@ -16,7 +16,9 @@ export class GetCustomersPersonHandler
       id,
       first_name as firstName,
       last_name as lastName,
-      dni
+      dni,
+      email,
+      created_at
     FROM 
       clients
     WHERE
@@ -35,6 +37,7 @@ export class GetCustomersPersonHandler
       customerDto.firstName = ormCustomer.firstName;
       customerDto.lastName = ormCustomer.lastName;
       customerDto.dni = ormCustomer.dni;
+      customerDto.email = ormCustomer.email;
       return customerDto;
     });
     return customers;

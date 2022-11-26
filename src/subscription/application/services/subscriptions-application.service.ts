@@ -35,7 +35,7 @@ export class SubscriptionApplicationService {
         openAccount.number != '1'
           ? SuscriptionType.NORMAL
           : SuscriptionType.PREMIUM,
-        Date.now().toString(),
+        null,
         1,
         null,
         null,

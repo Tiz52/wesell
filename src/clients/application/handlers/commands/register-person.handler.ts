@@ -14,6 +14,7 @@ import { PersonTypeORM } from '../../../infrastructure/entities/person.typeorm';
 import { AuditTrail } from '../../../../common/domain/value-objects/audit-trail.value';
 import { DateTime } from '../../../../common/domain/value-objects/date-time.value';
 import { UserId } from '../../../../users/domain/value-objects/user-id.value';
+import { Email } from 'src/clients/domain/value-objects/email.value';
 
 @CommandHandler(RegisterPerson)
 export class RegisterPersonHandler implements ICommandHandler<RegisterPerson> {
@@ -34,6 +35,12 @@ export class RegisterPersonHandler implements ICommandHandler<RegisterPerson> {
     if (dniResult.isFailure()) {
       return clientId;
     }
+    const emailResult: Result<AppNotification, Email> = Email.create(
+      command.email,
+    );
+    if (emailResult.isFailure()) {
+      return clientId;
+    }
     const auditTrail: AuditTrail = AuditTrail.from(
       command.createdAt != null ? DateTime.fromString(command.createdAt) : null,
       command.createdBy != null ? UserId.of(command.createdBy) : null,
@@ -43,6 +50,7 @@ export class RegisterPersonHandler implements ICommandHandler<RegisterPerson> {
     let person: Person = PersonFactory.createFrom(
       personNameResult.value,
       dniResult.value,
+      emailResult.value,
       auditTrail,
     );
     let personTypeORM: PersonTypeORM = PersonMapper.toTypeORM(person);

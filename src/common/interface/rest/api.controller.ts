@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import { HttpStatus } from '@nestjs/common';
 import { Envelope } from './envelope';
-import { AppError } from '../application/app.error';
+import { AppError } from '../../application/app.error';
 
 export class ApiController {
   static ok(response: Response, result: object): Envelope {

@@ -3,6 +3,7 @@ export class RegisterPerson {
     public readonly firstName: string,
     public readonly lastName: string,
     public readonly dni: string,
+    public readonly email: string,
     public readonly createdAt: string,
     public readonly createdBy: number,
     public readonly updatedAt: string,

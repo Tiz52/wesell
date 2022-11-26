@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS clients(
   first_name VARCHAR(75) NULL,
   last_name VARCHAR(75) NULL,
   dni VARCHAR(8) NULL,
+  email VARCHAR(75) NULL DEFAULT 'NONE',
   PRIMARY KEY(id),
   UNIQUE INDEX UQ_clients_dni(dni),
   KEY IX_clients_created_by(created_by),

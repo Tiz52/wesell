@@ -7,6 +7,7 @@ import { AppNotification } from 'src/common/application/app.notification';
 import { Result } from 'typescript-result';
 import { RegisterPerson } from '../commands/register-person.command';
 import { DateTime } from '../../../common/domain/value-objects/date-time.value';
+import { AppSettings } from '../../../common/application/app-settings';
 
 @Injectable()
 export class PersonApplicationService {
@@ -25,12 +26,13 @@ export class PersonApplicationService {
     }
     const createdAt = DateTime.utcNow().format();
     const createdBy = null;
-    const updatedAt = null;
+    const updatedAt = DateTime.utcNow().format();
     const updatedBy = null;
     const registerPerson: RegisterPerson = new RegisterPerson(
       registerPersonRequest.firstName,
       registerPersonRequest.lastName,
       registerPersonRequest.dni,
+      registerPersonRequest.email,
       createdAt,
       createdBy,
       updatedAt,
@@ -42,6 +44,7 @@ export class PersonApplicationService {
       registerPersonRequest.firstName,
       registerPersonRequest.lastName,
       registerPersonRequest.dni,
+      registerPersonRequest.email,
     );
     return Result.ok(registerResponse);
   }

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ClientsController } from './api/clients.controller';
+import { ClientsController } from './interface/rest/clients.controller';
 import { CqrsModule } from '@nestjs/cqrs';
 import { RegisterPersonValidator } from './application/validators/register-person.validator';
 import { TypeOrmModule } from '@nestjs/typeorm';

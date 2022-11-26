@@ -3,6 +3,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   TableInheritance,
+  Unique,
 } from 'typeorm';
 import { AuditTrailTypeORM } from '../../../common/infrastructure/value-objects/audit-trail.typeorm';
 import { ClientType } from '../../domain/enums/client-type.enum';
